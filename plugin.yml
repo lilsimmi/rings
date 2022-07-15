@@ -1,0 +1,36 @@
+main: me.simmi.ringsv2.main
+name: Rings
+version: '1.0.2'
+description: Booster Items, get potion effects and perks.
+author: lilsimmi
+prefix: Rings
+api-version: 1.18
+
+commands:
+  rings:
+    description: rings GUI
+    usage: /<command>
+    permission: rings.gui
+    permission-message: You do not have permission!
+  givering:
+    description: give rings
+    usage: /<command> <ring> <player>
+    permission: rings.give
+    permission-message: You do not have permission!
+  ringlist:
+    description: list of ring identifiers
+    usage: /<command>
+    permission: rings.list
+    permission-message: You do not have permission!
+ 
+permissions: 
+  rings.give:
+    description: allows give command and gui clicking
+    default: op
+  rings.gui:
+    description: opens GUI
+    default: op
+  rings.list:
+    description: lists ring types
+    default: op
+  
