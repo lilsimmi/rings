@@ -1,4 +1,4 @@
 ADDITIONS WANTED:
 - Configuration compadability for crafting recipes
-- Allow players to create their own rings
-- etc.
+- Tablist online players for second argument of command /givering <type> <player> 
+- Seperate parts of the main class into their own files
