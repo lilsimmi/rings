@@ -10,7 +10,7 @@ import org.bukkit.command.TabCompleter;
 public class tabList implements TabCompleter
 {
 
-	List<String> arguments = new ArrayList<String>();
+	List<String> arguments = new ArrayList<>();
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) 
