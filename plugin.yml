@@ -2,7 +2,9 @@ main: me.simmi.ringsv2.main
 name: Rings
 version: '1.0.2'
 description: Booster Items, get potion effects and perks.
-author: lilsimmi
+authors:
+  - lilsimmi
+  - Xaxis
 prefix: Rings
 api-version: 1.18
 
