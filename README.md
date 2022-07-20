@@ -67,4 +67,3 @@ Rings:
         # You can define a custom model data value to apply for later on resourcepack usage.
         CustomModelData: 0
 ````
-
