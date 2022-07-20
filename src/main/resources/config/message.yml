@@ -1,0 +1,29 @@
+Prefix: "&eRingsReworked &7» &r"
+
+NoPermission: "&cError, you don't have permission for this."
+Command:
+  NoPlayer: "&cError, you need to be a player to use this command."
+  PlayerNotFound: "&cError, the entered player couldn't be found."
+  RingNotFound: "&cError, the entered ring couldn't be found."
+  Recipe:
+    WrongUsage: "&cWrong command usage: Use /rings give [ringname] (player)"
+    NoRingName: "&cError, you need to provide a ring name."
+  Give:
+    AddedRing: "&7Added new ring to inventory."
+    AddedRingToPlayer: "&7Added new ring to &e%player%'s &7inventory."
+  List:
+    ListLayout:
+      - "&6List of available Rings:"
+      - ""
+      - "%list%"
+    ListItem:
+      Name: "&7[&e%name%&7] "
+      Hover: "&7» Click to show crafting recipe «"
+  Reload: "&aSuccessfully reloaded RingsReworked!"
+Gui:
+  RingGui:
+    Title: "Rings Inventory"
+    PageLeft: "&7 « Page %page% "
+    PageRight: "&7 Page %page% » "
+  RingRecipeGui:
+    Title: "%ringname%"
