@@ -1,0 +1,192 @@
+# RingsReworked - by LuckyMutt
+
+Rings:
+  # This is the ring name. You can set it to whatever you like, but you should keep in mind
+  # that you have to work with the name ingame later on
+  SpeedI:
+    # The permission the player needs to be able to use the ring
+    Permission: rings.use.speed.I
+    # Section to add the potion effects for the ring. Can have multiple effects at once.
+    # Format: POTION_NAME: AMPLIFIER (If the amplifier would be 0 the potion level would be 1.
+    #
+    # For a list of possible potion-effects check out https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/potion/PotionEffectType.html
+    #
+    Potions:
+      SPEED: 0
+    # The crafting section will define how the crafting recipe for the item should be and how the result item should look like.
+    Crafting:
+      # Player need this permission if he should be able to craft the item.
+      Permission: rings.craft.speed.I
+      # Here you can define the Shape of the item. The letters are placeholders for materials in the crafting grid.
+      Shape:
+        - XXX
+        - XNX
+        - XXX
+      # Here you can define which materials should be used for which placeholder letter.
+      Materials:
+        X: IRON_NUGGET
+        N: NETHER_STAR
+      # This section will define how the result-item should look like.
+      Result:
+        Material: IRON_NUGGET
+        Name: "&aSpeed I Ring"
+        Lore:
+          - "&7Wear this ring in your offhand for the effect to apply."
+        # Important! For enchantments use the vanilla styled names in lowercase.
+        # The number behind the enchantment will represent the level of the enchantment
+        Enchantments:
+          unbreaking: 1
+        # You can define a custom model data value to apply for later on resourcepack usage.
+        CustomModelData: 0
+
+  # This would be the second ring.
+  NightvisionI:
+    Permission: rings.use.nightvision.I
+    Potions:
+      NIGHT_VISION: 0
+    Crafting:
+      Permission: rings.craft.nightvision.I
+      Shape:
+        - XXX
+        - XNX
+        - XXX
+      Materials:
+        X: BLAZE_POWDER
+        N: NETHER_STAR
+      Result:
+        Material: BLAZE_POWDER
+        Name: "&5Nightvision I Ring"
+        Lore:
+          - "&7Wear this ring in your offhand for the effect to apply."
+        Enchantments:
+          unbreaking: 1
+
+  SaturationI:
+    Permission: rings.use.saturation.I
+    Potions:
+      SATURATION: 0
+    Crafting:
+      Permission: rings.craft.saturation.I
+      Shape:
+        - XXX
+        - XNX
+        - XXX
+      Materials:
+        X: SLIME_BALL
+        N: NETHER_STAR
+      Result:
+        Material: SLIME_BALL
+        Name: "&eSaturation I Ring"
+        Lore:
+          - "&7Wear this ring in your offhand for the effect to apply."
+        Enchantments:
+          unbreaking: 1
+
+  JumpboostI:
+    Permission: rings.use.jumpboost.I
+    Potions:
+      SPEED: 0
+    Crafting:
+      Permission: rings.craft.jumpboost.I
+      Shape:
+        - XXX
+        - XNX
+        - XXX
+      Materials:
+        X: YELLOW_DYE
+        N: NETHER_STAR
+      Result:
+        Material: YELLOW_DYE
+        Name: "&aJumpboost I Ring"
+        Lore:
+          - "&7Wear this ring in your offhand for the effect to apply."
+        Enchantments:
+          unbreaking: 1
+
+  InvisibilityI:
+    Permission: rings.use.invisibility.I
+    Potions:
+      SPEED: 0
+    Crafting:
+      Permission: rings.craft.invisibility.I
+      Shape:
+        - XXX
+        - XNX
+        - XXX
+      Materials:
+        X: LIME_DYE
+        N: NETHER_STAR
+      Result:
+        Material: LIME_DYE
+        Name: "&6Invisibility I Ring"
+        Lore:
+          - "&7Wear this ring in your offhand for the effect to apply."
+        Enchantments:
+          unbreaking: 1
+
+  StrengthI:
+    Permission: rings.use.strength.I
+    Potions:
+      SPEED: 0
+    Crafting:
+      Permission: rings.craft.strength.I
+      Shape:
+        - XXX
+        - XNX
+        - XXX
+      Materials:
+        X: PINK_DYE
+        N: NETHER_STAR
+      Result:
+        Material: PINK_DYE
+        Name: "&cStrength I Ring"
+        Lore:
+          - "&7Wear this ring in your offhand for the effect to apply."
+        Enchantments:
+          unbreaking: 1
+
+  HasteI:
+    Permission: rings.use.haste.I
+    Potions:
+      FAST_DIGGING: 0
+    Crafting:
+      Permission: rings.craft.haste.I
+      Shape:
+        - XXX
+        - XNX
+        - XXX
+      Materials:
+        X: GOLD_NUGGET
+        N: NETHER_STAR
+      Result:
+        Material: GOLD_NUGGET
+        Name: "&6Haste I Ring"
+        Lore:
+          - "&7Wear this ring in your offhand for the effect to apply."
+        Enchantments:
+          unbreaking: 1
+        CustomModelData: 0
+
+  HealthI:
+    Permission: rings.use.health.I
+    Attributes:
+      GENERIC_MAX_HEALTH: 24.0
+    Crafting:
+      Permission: rings.craft.health.I
+      Shape:
+        - XXX
+        - XNX
+        - XXX
+      Materials:
+        X: RED_DYE
+        N: NETHER_STAR
+      Result:
+        Material: GOLD_NUGGET
+        Name: "&cHealth I Ring"
+        Lore:
+          - "&7Wear this ring in your offhand for the effect to apply."
+        Enchantments:
+          unbreaking: 1
+
+
+
