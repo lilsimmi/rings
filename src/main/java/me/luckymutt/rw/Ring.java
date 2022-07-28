@@ -20,6 +20,12 @@ public class Ring {
 
     private final NamespacedKey key;
 
+    public final class RingRecipe {
+
+
+
+    }
+
     public Ring(
             String usePermission,
             String craftPermission,

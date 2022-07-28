@@ -9,6 +9,7 @@ import me.luckymutt.rw.utility.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
@@ -76,12 +77,14 @@ public class RingManager implements Listener {
     }
 
     private void activateRing(Ring ring, Player player) {
-        if (!player.hasPermission(ring.getUsePermission())) return;
+        if (!player.hasPermission("rings.use.*") || !player.hasPermission(ring.getUsePermission())) return;
 
         RingEquipEvent ringEquipEvent = new RingEquipEvent(player, ring);
         Bukkit.getPluginManager().callEvent(ringEquipEvent);
 
         if (!ringEquipEvent.isCancelled()) {
+            player.playSound(player, Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 0.3f, 1f);
+
             ring.getPotions().forEach((potionEffectType, integer) ->
                     player.addPotionEffect(new PotionEffect(potionEffectType, Integer.MAX_VALUE, integer, false, false, true)));
 
@@ -95,6 +98,8 @@ public class RingManager implements Listener {
         Bukkit.getPluginManager().callEvent(ringUnequipEvent);
 
         if (!ringUnequipEvent.isCancelled()) {
+            player.playSound(player, Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 0.3f, 1f);
+
             ring.getPotions().forEach((potionEffectType, integer) ->
                     player.removePotionEffect(potionEffectType));
 
@@ -121,7 +126,7 @@ public class RingManager implements Listener {
             Ring ring = getRing(ringKey);
 
             if (ring.getRingItem().equals(result)) {
-                if (!player.hasPermission(ring.getCraftPermission())) {
+                if (!player.hasPermission("rings.craft.*") || !player.hasPermission(ring.getCraftPermission())) {
                     event.getInventory().setResult(new ItemStack(Material.AIR));
                 }
                 break;
@@ -132,25 +137,17 @@ public class RingManager implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        Optional<Map.Entry<String, Ring>> ringEntry = ringMap.entrySet().stream()
-                .filter(stringRingEntry -> stringRingEntry.getValue().getRingItem().equals(player.getInventory().getItemInOffHand())).findFirst();
+        Optional<Ring> ring = getRing(player.getInventory().getItemInOffHand());
 
-        if (ringEntry.isEmpty()) return;
-        Ring ring = ringEntry.get().getValue();
-
-        activateRing(ring, player);
+        ring.ifPresent(value -> activateRing(value, player));
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        Optional<Map.Entry<String, Ring>> ringEntry = ringMap.entrySet().stream()
-                .filter(stringRingEntry -> stringRingEntry.getValue().getRingItem().equals(player.getInventory().getItemInOffHand())).findFirst();
+        Optional<Ring> ring = getRing(player.getInventory().getItemInOffHand());
 
-        if (ringEntry.isEmpty()) return;
-        Ring ring = ringEntry.get().getValue();
-
-        deactivateRing(ring, player);
+        ring.ifPresent(value -> deactivateRing(value, player));
     }
 
     private void registerRings() {
@@ -259,30 +256,14 @@ public class RingManager implements Listener {
         return ringMap.getOrDefault(name, null);
     }
 
+    public Optional<Ring> getRing(ItemStack itemStack) {
+        return ringMap.values().stream().filter(ring -> ring.getRingItem().equals(itemStack)).findFirst();
+    }
+
     public void unloadCraftingRecipes() {
         for (String ringKey : getRingNames()) {
             Ring ring = getRing(ringKey);
             Bukkit.removeRecipe(ring.getKey());
         }
-    }
-
-    public void reloadRings() {
-        unloadCraftingRecipes();
-
-        for (String ringKey : getRingNames()) {
-            Ring ring = getRing(ringKey);
-            Bukkit.getOnlinePlayers().forEach(player -> deactivateRing(ring, player));
-        }
-
-        ringMap.clear();
-        registerRings();
-
-        Bukkit.getOnlinePlayers().forEach(player -> {
-            Optional<Map.Entry<String, Ring>> ringEntry = ringMap.entrySet().stream().filter(stringRingEntry -> stringRingEntry.getValue().getRingItem().equals(player.getInventory().getItemInOffHand())).findFirst();
-            if (ringEntry.isEmpty()) return;
-
-            Ring ring = ringEntry.get().getValue();
-            activateRing(ring, player);
-        });
     }
 }

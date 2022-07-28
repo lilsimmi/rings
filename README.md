@@ -15,12 +15,21 @@ Also, the whole plugin messages can be changed and configurated to your likings.
 ## Commands
 | Command                               | PermissionNode         | Default | Description                                                                     |
 |---------------------------------------|------------------------|---------|---------------------------------------------------------------------------------|
-| `/rings`                              | `none`                 | `true`  | Just shows some credentials about the plugin                                    |
+| `/rings`                              | `rings.command`        | `false` | Just shows some credentials about the plugin                                    |
 | `/rings gui`                          | `rings.command.gui`    | `OP`    | Will open a GUI with all the rings available *(Click ring to add to inventory)* |
 | `/rings list`                         | `rings.command.list`   | `OP`    | Prints a list with all available rings in the chat                              |
 | `/rings recipe [ringname]`            | `rings.command.recipe` | `OP`    | Will open a GUI which will show the crafting recipe for the ring                |
 | `/rings give [ringname] (playername)` | `rings.command.give`   | `OP`    | Allows you to give yourself or another player a certain ring                    |
-| `/rings reload`                       | `rings.command.reload` | `OP`    | Reload the plugin                                                               |
+
+## Permission
+| PermissionNode       | Description                                                                             |
+|----------------------|-----------------------------------------------------------------------------------------|
+| `rings.*`            | Full permission for the plugin                                                          |
+| `rings.use.*`        | Allows the player to use every ring                                                     |
+| `rings.use.[ring]`   | Base styled use permission for a ring. *(Can be changed in the config for each ring)*   |
+| `rings.craft.*`      | Allows the player to craft every ring                                                   |
+| `rings.craft.[ring]` | Base styled craft permission for a ring. *(Can be changed in the config for each ring)* |
+ | `rings.gui.give`     | Allows the player to give himself the ring in the `/rings gui` - GUI                    |
 
 ## Configuration
 
