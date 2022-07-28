@@ -134,14 +134,6 @@ public class RingCommand implements CommandExecutor, TabCompleter {
                     }
                 }
 
-                case "reload" -> {
-                    if (!hasPermission(sender, "rings.command.reload")) return true;
-
-                    ringManager.reloadRings();
-                    sender.sendMessage(Message.prefix() + Message.fromConfig("Command.Reload").getMessage());
-
-                    return true;
-                }
             }
         } else {
             sender.sendMessage(ChatColor.GRAY + "RingsReworked plugin | " + ChatColor.YELLOW + "By LuckyMutt");
@@ -180,11 +172,11 @@ public class RingCommand implements CommandExecutor, TabCompleter {
 
         if (args.length == 1) {
             List<String> list = new ArrayList<>();
-            if (hasPermission(sender, "rings.command.gui")) list.add("gui");
-            if (hasPermission(sender, "rings.command.list")) list.add("list");
-            if (hasPermission(sender, "rings.command.recipe")) list.add("recipe");
-            if (hasPermission(sender, "rings.command.give")) list.add("give");
-            if (hasPermission(sender, "rings.command.reload")) list.add("reload");
+            if (sender.hasPermission("rings.command.gui")) list.add("gui");
+            if (sender.hasPermission("rings.command.list")) list.add("list");
+            if (sender.hasPermission("rings.command.recipe")) list.add("recipe");
+            if (sender.hasPermission("rings.command.give")) list.add("give");
+            if (sender.hasPermission("rings.command.reload")) list.add("reload");
 
             return list;
         }

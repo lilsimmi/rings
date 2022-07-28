@@ -14,8 +14,11 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Optional;
+
 public class RingGUI implements Listener {
 
+    private final RingsReworked plugin;
     private final RingManager ringManager;
     private final Inventory inventory;
 
@@ -24,6 +27,7 @@ public class RingGUI implements Listener {
     private int page = 0;
 
     public RingGUI(RingsReworked plugin) {
+        this.plugin = plugin;
         this.ringManager = plugin.getRingManager();
         this.inventory = Bukkit.createInventory(null, 54, Message.fromConfig("Gui.RingGui.Title").getMessage());
 
@@ -94,8 +98,14 @@ public class RingGUI implements Listener {
             if (clickedSlot == 47 && clickedItem.getType().equals(Material.PAPER)) changePage(page - 1);
             if (clickedSlot == 51 && clickedItem.getType().equals(Material.PAPER)) changePage(page + 1);
 
-            if (!(clickedItem.getType().equals(Material.GRAY_STAINED_GLASS_PANE) || clickedItem.getType().equals(Material.PAPER)))
-                player.getInventory().addItem(clickedItem);
+            if (!(clickedItem.getType().equals(Material.GRAY_STAINED_GLASS_PANE) || clickedItem.getType().equals(Material.PAPER))) {
+                if(player.hasPermission("rings.gui.give")) player.getInventory().addItem(clickedItem);
+                else {
+                    Optional<Ring> ring = ringManager.getRing(clickedItem);
+                    ring.ifPresent(value -> new RingRecipeGUI(plugin, value).open(player));
+                }
+            }
+
 
             event.setCancelled(true);
         }

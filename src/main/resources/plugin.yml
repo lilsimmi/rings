@@ -9,23 +9,20 @@ main: me.luckymutt.rw.RingsReworked
 commands:
   rings:
     description: The main command for the rings plugin
-    permission: rings.command
     usage: /rings
 
 permissions:
   rings.*:
     description: Base permission for the plugin
     children:
-      rings.use:
+      rings.use.*:
         description: Base permission for using the rings
-      rings.craft:
+      rings.craft.*:
         description: Base permission for crafting the rings
       rings.command.*:
         description: Base permission for using the commands
-        default: op
         children:
           rings.command.gui: true
           rings.command.list: true
           rings.command.recipe: true
           rings.command.give: true
-          rings.command.reload: true
